@@ -7,7 +7,7 @@ ENV DOTNET_CLI_TELEMETRY_OPTOUT 1
 WORKDIR /src
 COPY function/function.csproj .
 RUN dotnet restore
-COPY . .
+COPY function/ .
 RUN dotnet publish -c release -o /app
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
