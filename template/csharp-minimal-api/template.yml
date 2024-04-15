@@ -1,0 +1,2 @@
+language: csharp-minimal-api
+fprocess: dotnet ./function.dll
