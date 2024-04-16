@@ -9,7 +9,41 @@ faas-cli template pull https://github.com/welteki/openfaas-csharp-templates
 faas-cli new --list
 
 Languages available as templates:
+- csharp
 - csharp-minimal-api
+```
+
+## C# Web API template
+
+OpenFaaS template based on the [ASP.NET Core Minimal API](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-8.0)
+
+```sh
+faas-cli new --lang csharp <fn-name>
+```
+
+```c#
+public static class FaaSEndpoints
+{
+    public static void MapServices(IServiceCollection services)
+    {
+        services.AddEndpointsApiExplorer();
+        services.AddSwaggerGen();
+
+        // register additional services
+    }
+
+    public static void Map(WebApplication app)
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+
+        app.MapGet("/", () =>
+        {
+            return "Hello world!!!";
+        })
+        .WithOpenApi();
+    }
+}
 ```
 
 ## Minimal API template
@@ -17,7 +51,7 @@ Languages available as templates:
 OpenFaaS template based on the [ASP.NET Core Minimal API](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-8.0) 
 
 ```sh
-faas-cli new --lang chsarp-minimal-api <fn-name>
+faas-cli new --lang csharp-minimal-api <fn-name>
 ```
 
 ### Example usage

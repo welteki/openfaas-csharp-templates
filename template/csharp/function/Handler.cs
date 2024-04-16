@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace function;
-public static class FaaSEndpoints
+public static class Handler
 {
     public static void MapServices(IServiceCollection services)
     {
