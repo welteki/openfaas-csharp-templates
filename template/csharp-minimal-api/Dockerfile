@@ -1,6 +1,9 @@
-FROM  ghcr.io/openfaas/of-watchdog:0.9.15 as watchdog
+FROM --platform=${TARGETPLATFORM:-linux/amd64} ghcr.io/openfaas/of-watchdog:0.9.15 as watchdog
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM --platform=${BUILDPLATFORM:-linux/amd64} mcr.microsoft.com/dotnet/sdk:8.0 AS build
+
+ARG TARGETPLATFORM
+ARG BUILDPLATFORM
 
 ENV DOTNET_CLI_TELEMETRY_OPTOUT 1
 
@@ -10,10 +13,9 @@ RUN dotnet restore
 COPY function/ .
 RUN dotnet publish -c release -o /app
 
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
+FROM --platform=${TARGETPLATFORM:-linux/amd64}  mcr.microsoft.com/dotnet/aspnet:8.0
 COPY --from=watchdog /fwatchdog /usr/bin/fwatchdog
 RUN chmod +x /usr/bin/fwatchdog
-
 
 WORKDIR /app
 COPY --from=build /app .
