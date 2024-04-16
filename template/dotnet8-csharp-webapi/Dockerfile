@@ -8,7 +8,7 @@ ARG BUILDPLATFORM
 ENV DOTNET_CLI_TELEMETRY_OPTOUT 1
 
 WORKDIR /src
-COPY function/function.csproj .
+COPY function/Function.csproj .
 RUN dotnet restore
 COPY function/ .
 RUN dotnet publish -c release -o /app
@@ -23,7 +23,7 @@ COPY --from=build /app .
 USER app
 
 ENV ASPNETCORE_HTTP_PORTS=3000
-ENV fprocess="dotnet function.dll"
+ENV fprocess="dotnet Function.dll"
 ENV upstream_url="http://127.0.0.1:3000"
 ENV mode="http"
 

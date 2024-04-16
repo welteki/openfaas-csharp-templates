@@ -9,8 +9,8 @@ ENV DOTNET_CLI_TELEMETRY_OPTOUT 1
 
 WORKDIR /src
 COPY root.csproj .
-COPY function/function.csproj function/
-RUN dotnet restore root.csproj
+COPY function/Function.csproj function/
+RUN dotnet restore Root.csproj
 COPY . .
 RUN dotnet publish -c release -o /app
 
@@ -23,7 +23,7 @@ COPY --from=build /app .
 
 USER app
 
-ENV fprocess="dotnet root.dll"
+ENV fprocess="dotnet Root.dll"
 ENV upstream_url="http://127.0.0.1:3000"
 ENV mode="http"
 
