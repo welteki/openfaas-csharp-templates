@@ -1,3 +1,5 @@
+> This repo has been archived, official .NET templates for OpenFaaS are available at: https://github.com/openfaas/dotnet-templates
+
 # OpenFaaS .NET templates
 
 The repository contains templates for OpenFaaS and C#
