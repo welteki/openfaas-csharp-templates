@@ -13,7 +13,7 @@ public static class Handler
         // register additional services
     }
 
-    public static void Map(WebApplication app)
+    public static void MapEndpoints(WebApplication app)
     {
         app.UseSwagger();
         app.UseSwaggerUI();
